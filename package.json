@@ -1,0 +1,29 @@
+{
+  "name": "docker_exercise",
+  "version": "1.0.0",
+  "description": "Simple exercise to test docker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinzon/docker-course-example.git"
+  },
+  "keywords": [
+    "docker",
+    "exercise",
+    "platzi",
+    "swarm",
+    "traefik"
+  ],
+  "author": "Cristopher Pinzon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pinzon/docker-course-example/issues"
+  },
+  "homepage": "https://github.com/pinzon/docker-course-example#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
