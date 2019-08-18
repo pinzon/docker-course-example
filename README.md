@@ -22,16 +22,13 @@ $docker service create -d --name viz -p 8080:8080 --constraint=node.role==manage
 $docker stack deploy --compose-file docker-swarm.yml stack_1
 ```
 
-4.- Update each service to 4 replicas, rollout moude and env variable
+4.- Update each service to 4 replicas, rollout mode and env variable
 ```
 $docker service update --replicas 4  --env-add SECRET='Update secret of service 1' --update-parallelism 2 stack_1_app1
 $docker service update --replicas 4  --env-add SECRET='Update secret of service 2' --update-parallelism 2 stack_1_app2 
 ```
 
-5.- Update each service to 4 replicas, rollout moude and env variable
-```
-$docker service update --replicas 4  --env-add SECRET='Update secret of service 1' --update-parallelism 2 stack_1_app1
-$docker service update --replicas 4  --env-add SECRET='Update secret of service 2' --update-parallelism 2 stack_1_app2 
-```
+TODO:
+Installation of reverse proxy traefik
 
 
