@@ -1,2 +1,5 @@
 .git
+Dockerfile
+docker-compose.yml
+docker-swarm.yml
 /node_modules/
