@@ -39,6 +39,8 @@ services:
           - node.role == worker
     networks:
       - proxy-net
+    labels:
+      - "traefik.port=3000"
   app2:
     build: .
     environment:
@@ -50,6 +52,8 @@ services:
           - node.role == worker
     networks:
       -  proxy-net
+    labels:
+      - "traefik.port=3000"
 
 networks:
   proxy-net:
