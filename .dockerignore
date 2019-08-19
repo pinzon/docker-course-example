@@ -1,4 +1,5 @@
 .git
+package-lock.json
 Dockerfile
 docker-compose.yml
 docker-swarm.yml

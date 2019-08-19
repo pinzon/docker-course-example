@@ -4,8 +4,6 @@ services:
     image: cristopherpinzon/docker_exercise
     environment:
       - SECRET='Service 1 Env'
-    ports:
-      - "3000:3000"
     deploy:
       placement:
         constraints:
@@ -14,8 +12,6 @@ services:
     image: cristopherpinzon/docker_exercise
     environment:
       - SECRET='Service 2 Env'
-    ports:
-      - "3001:3000"
     deploy:
       placement:
         constraints:
