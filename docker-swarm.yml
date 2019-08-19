@@ -41,7 +41,7 @@ services:
     networks:
       - proxy-net
     labels:
-      traefik.port=3000
+      traefik.port: "3000"
   app2:
     image: cristopherpinzon/docker_exercise
     build: .
@@ -55,7 +55,7 @@ services:
     networks:
       -  proxy-net
     labels:
-      traefik.port=3000
+      traefik.port: "3000"
 
 networks:
   proxy-net:
