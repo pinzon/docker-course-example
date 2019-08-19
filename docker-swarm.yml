@@ -1,18 +1,56 @@
 version: '3'
 services:
+  viz:
+    image: dockersamples/visualizer
+    ports:
+      - "8080:8080"
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+  proxy:
+    image: dockersamples/visualizer
+    ports:
+      - "80:80"
+      - "9090:8080"
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    command: --docker --docker.swarmMode --docker.domain=test-service.com --docker.watch --api
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      - proxy-net
   app1:
-    image: cristopherpinzon/docker_exercise
+    build: .
     environment:
       - SECRET='Service 1 Env'
     deploy:
+      replicas: 4
       placement:
         constraints:
           - node.role == worker
+    networks:
+      - proxy-net
   app2:
-    image: cristopherpinzon/docker_exercise
+    build: .
     environment:
       - SECRET='Service 2 Env'
     deploy:
+      replicas: 4
       placement:
         constraints:
           - node.role == worker
+    networks:
+      -  proxy-net
+
+networks:
+  proxy-net:
+    driver: overlay

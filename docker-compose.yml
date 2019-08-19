@@ -1,14 +1,8 @@
 version: '3'
 services:
   app1:
-    image: cristopherpinzon/docker_exercise
+    build: .
     environment:
-      - SECRET='Service 1 Env'
+      - SECRET='Secret password'
     ports:
       - "3000:3000"
-  app2:
-    image: cristopherpinzon/docker_exercise
-    environment:
-      - SECRET='Service 2 Env'
-    ports:
-      - "3001:3000"

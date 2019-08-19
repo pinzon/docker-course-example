@@ -6,7 +6,9 @@ The result it's the following enviroment:
 
 In this case I used [Play with Docker](https://labs.play-with-docker.com/ "Play with Docker") because it offers free resources for a limited time, enough to do testing.
 
-1.- Clone the application.
+**Remember to change $repo_image for with the name you want**
+
+1.- Clone this project.
 ```sh
 git clone git@github.com:pinzon/docker-course-example.git
 ```
