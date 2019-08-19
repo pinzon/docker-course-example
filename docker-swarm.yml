@@ -13,7 +13,7 @@ services:
         constraints:
           - node.role == manager
   proxy:
-    image: dockersamples/visualizer
+    image: traefik 
     ports:
       - "80:80"
       - "9090:8080"
@@ -21,7 +21,7 @@ services:
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
-    command: ["--docker --docker.swarmMode --docker.domain=test-service.com --docker.watch --api"]
+    command: --docker --docker.swarmMode --docker.domain=test-service.com --docker.watch --api
     deploy:
       placement:
         constraints:
