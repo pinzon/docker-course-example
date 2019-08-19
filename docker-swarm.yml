@@ -29,7 +29,7 @@ services:
     networks:
       - proxy-net
   app1:
-    image: test/app
+    image: cristopherpinzon/docker_exercise
     build: .
     environment:
       - SECRET='Service 1 Env'
@@ -43,7 +43,7 @@ services:
     labels:
       - "traefik.port=3000"
   app2:
-    image: test/app
+    image: cristopherpinzon/docker_exercise
     build: .
     environment:
       - SECRET='Service 2 Env'
