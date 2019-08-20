@@ -1,5 +1,22 @@
 version: '3.7'
 services:
+  portainer:
+    image: portainer/portainer
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - "9000:9000"
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+      - type: volume
+        source: portainer_data
+        target: /data
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
   viz:
     image: dockersamples/visualizer
     ports:
@@ -30,7 +47,6 @@ services:
       - proxy-net
   app1:
     image: cristopherpinzon/docker_exercise
-    build: .
     environment:
       - SECRET='Service 1 Env'
     deploy:
@@ -45,7 +61,6 @@ services:
   
   app2:
     image: cristopherpinzon/docker_exercise
-    build: .
     environment:
       - SECRET='Service 2 Env'
     deploy:
@@ -57,7 +72,9 @@ services:
           - node.role == worker
     networks:
       -  proxy-net
-    
+
+volumes:
+  portainer_data:  
 
 networks:
   proxy-net:

@@ -64,8 +64,38 @@ docker service create --name proxy --constraint=node.role==manager -p 80:80 -p 9
 10.- Test your environment with curl.
 ```sh
 #In this case Play-with-docker needs the domain but with can still test the access to the services using Curl
-$curl -H "Host:stack-app1.test-service.com" http://localhost
-$curl -H "Host:stack-app2.test-service.com" http://localhost
+curl -H "Host:stack-app1.test-service.com" http://localhost
+curl -H "Host:stack-app2.test-service.com" http://localhost
+```
+
+### Mounting a Docker Swarm Manager 
+
+11.- Create volume for portainer
+```sh
+docker volume create portainer_data
+```
+
+12.- Create the Portainer service
+```sh
+docker service create --name portainer -p 9000:9000 --constraint=node.role==manager --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock --mount type=volume,src=portainer_data,dst=/data portainer/portainer -H unix:///var/run/docker.sock
+```
+
+### Docker CleanUp service
+This service cleans al images that are not being used by any container
+#### Global mode means that it's going to run in all nodes
+```
+docker service create -d \
+-e CLEAN_PERIOD=900 \
+-e DELAY_TIME=600 \
+--log-driver json-file \
+--log-opt max-size=1m \
+--log-opt max-file=2 \
+--name=cleanup \
+--mode global \
+--mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
+meltwater/docker-cleanup
 ```
 
 #### NOTE: Most of this project can be done with a single compose file.
+
+### TODO: Implement protheus.
